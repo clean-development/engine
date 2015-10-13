@@ -1,0 +1,15 @@
+﻿{
+	"version": "1.0.0-*",
+	"description": "Components Class Library",
+	"authors": [ "Tommy Long" ],
+	"tags": [ "" ],
+	"projectUrl": "",
+	"licenseUrl": "",
+	"dependencies": {
+		"Microsoft.Framework.DependencyInjection": "1.0.0-beta7"
+	},
+	"frameworks": {
+		"net46": { },
+		"netcore50": { }
+	}
+}
