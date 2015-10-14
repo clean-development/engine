@@ -20,22 +20,20 @@ namespace Components
 			if (component == null)
 				throw new ArgumentNullException(nameof(component));
 
-			var entityType = typeof(Entity);
-			var componentType = typeof(Component);
-			if (!TryAssign(entityType, componentType, component))
-				throw new ComponentAlreadyAssignedException(entityType, componentType);
+			if (!TryAssignInternal(entity, component))
+				throw new ComponentAlreadyAssignedException(typeof(Entity), typeof(Component));
 		}
 
 		public bool TryAssign<Entity, Component>(Entity entity, Component component)
 		{
 			if (entity == null || component == null) return false;
 
-			return TryAssign(typeof(Entity), typeof(Component), component);
+			return TryAssignInternal(entity, component);
 		}
 
-		private bool TryAssign(Type entityType, Type componentType, object component)
+		private bool TryAssignInternal<Entity, Component>(Entity entity, Component component)
 			=> _state
-				.GetOrAdd(entityType)
+				.GetOrAdd(entity)
 				.TryAdd(component);
 	}
 }

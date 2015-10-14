@@ -42,12 +42,11 @@ namespace Component.Tests
 		}
 
 		[Fact]
-		public static void WhenSameComponentTypeAssignedToSameEntityThenThrowsException()
+		public static void WhenSameComponentTypeAssignedToSameEntityInstanceThenThrowsException()
 		{
 			var entity = new object();
-			var component = new object();
 			var provider = CreateProvider();
-			Action act = () => CreateTarget(provider).Assign(entity, component);
+			Action act = () => CreateTarget(provider).Assign(entity, new object());
 			act.ShouldNotThrow<Exception>();
 			act.ShouldThrow<ComponentAlreadyAssignedException>();
 		}
@@ -70,6 +69,27 @@ namespace Component.Tests
 		public static void WhenTryingToAssignComponentToEntityThenReturnsTrue()
 		{
 			CreateTarget().TryAssign(new object(), new object())
+				.Should().BeTrue();
+		}
+
+		[Fact]
+		public static void WhenTryingToAssignSameComponentTypeToSameEntityInstanceThenReturnsFalse()
+		{
+			var entity = new object();
+			var provider = CreateProvider();
+			CreateTarget(provider).TryAssign(entity, new object())
+				.Should().BeTrue();
+			CreateTarget(provider).TryAssign(entity, new object())
+				.Should().BeFalse();
+		}
+
+		[Fact]
+		public static void WhenTryingToAssignSameComponentsToDifferentEntityInstancesThenReturnsTrue()
+		{
+			var provider = CreateProvider();
+			CreateTarget(provider).TryAssign(new object(), new object())
+				.Should().BeTrue();
+			CreateTarget(provider).TryAssign(new object(), new object())
 				.Should().BeTrue();
 		}
 	}

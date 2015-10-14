@@ -4,6 +4,6 @@ namespace Components
 {
 	public interface StateManager
 	{
-		EntityState GetOrAdd(Type entityType);
+		EntityState GetOrAdd<Entity>(Entity entity);
 	}
 }

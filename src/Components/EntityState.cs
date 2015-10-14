@@ -2,6 +2,6 @@
 {
 	public interface EntityState
 	{
-		bool TryAdd(object component);
+		bool TryAdd<Component>(Component component);
 	}
 }
