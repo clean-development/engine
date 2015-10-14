@@ -87,9 +87,10 @@ namespace Component.Tests
 		public static void WhenTryingToAssignSameComponentsToDifferentEntityInstancesThenReturnsTrue()
 		{
 			var provider = CreateProvider();
-			CreateTarget(provider).TryAssign(new object(), new object())
+			var component = new object();
+			CreateTarget(provider).TryAssign(new object(), component)
 				.Should().BeTrue();
-			CreateTarget(provider).TryAssign(new object(), new object())
+			CreateTarget(provider).TryAssign(new object(), component)
 				.Should().BeTrue();
 		}
 	}
