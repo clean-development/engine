@@ -18,25 +18,26 @@ namespace Component.Tests
 				.Should().NotBeNull();
 		}
 
-		private static ComponentSystem CreateTarget()
-		{
-			return new ServiceCollection()
+		private static IServiceProvider CreateProvider()
+			=> new ServiceCollection()
 				.UseComponentSystem()
-				.BuildServiceProvider()
+				.BuildServiceProvider();
+
+		private static ComponentSystem CreateTarget(IServiceProvider provider = null)
+			=> (provider ?? CreateProvider())
 				.GetRequiredService<ComponentSystem>();
-		}
 
 		[Fact]
 		public static void WhenAssigningComponentToNullEntityThenThrowsException()
 		{
-			Action act = () => CreateTarget().Assign<object, object>(null, new object());
+			Action act = () => CreateTarget().Assign((object) null, new object());
 			act.ShouldThrow<ArgumentNullException>();
 		}
 
 		[Fact]
 		public static void WhenAssigningNullComponentToEntityThenThrowsException()
 		{
-			Action act = () => CreateTarget().Assign<object, object>(new object(), null);
+			Action act = () => CreateTarget().Assign(new object(), (object)null);
 			act.ShouldThrow<ArgumentNullException>();
 		}
 
@@ -45,9 +46,31 @@ namespace Component.Tests
 		{
 			var entity = new object();
 			var component = new object();
-			Action act = () => CreateTarget().Assign(entity, component);
+			var provider = CreateProvider();
+			Action act = () => CreateTarget(provider).Assign(entity, component);
 			act.ShouldNotThrow<Exception>();
 			act.ShouldThrow<ComponentAlreadyAssignedException>();
+		}
+
+		[Fact]
+		public static void WhenTryingToAssignComponentToNullEntityThenReturnsFalse()
+		{
+			CreateTarget().TryAssign((object)null, new object())
+				.Should().BeFalse();
+		}
+
+		[Fact]
+		public static void WhenTryingToAssignNullComponentToEntityThenReturnsFalse()
+		{
+			CreateTarget().TryAssign(new object(), (object)null)
+				.Should().BeFalse();
+		}
+
+		[Fact]
+		public static void WhenTryingToAssignComponentToEntityThenReturnsTrue()
+		{
+			CreateTarget().TryAssign(new object(), new object())
+				.Should().BeTrue();
 		}
 	}
 }
