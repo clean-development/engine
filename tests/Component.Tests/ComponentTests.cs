@@ -93,5 +93,48 @@ namespace Component.Tests
 			CreateTarget(provider).TryAssign(new object(), component)
 				.Should().BeTrue();
 		}
+
+		[Fact]
+		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotThrowException()
+		{
+			Action act = () => CreateTarget().StateFor(new object());
+			act.ShouldNotThrow();
+		}
+
+		[Fact]
+		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotReturnNull()
+		{
+			CreateTarget().StateFor(new object())
+				.Should().NotBeNull();
+		}
+
+		[Fact]
+		public static void WhenRetrievingComponentNeverAssignedToEntityThenDoesNotThrowException()
+		{
+			Action act = () => CreateTarget().StateFor(new object()).Get<object>();
+			act.ShouldNotThrow();
+		}
+
+		[Fact]
+		public static void WhenRetrievingComponentAssignedToSameEntityInstanceThenReturnsComponent()
+		{
+			var entity = new object();
+			var component = new object();
+			var target = CreateTarget();
+			target.Assign(entity, component);
+
+			target.StateFor(entity).Get<object>()
+				.Should().Be(component);
+		}
+
+		[Fact]
+		public static void WhenRetrievingComponentAssignedToDifferentEntityInstanceThenReturnsDefaultComponent()
+		{
+			var target = CreateTarget();
+			target.Assign(new object(), new object());
+
+			target.StateFor(new object()).Get<object>()
+				.Should().Be(default(object));
+		}
 	}
 }

@@ -35,5 +35,8 @@ namespace Components
 			=> _state
 				.GetOrAdd(entity)
 				.TryAdd(component);
+
+		public EntityState StateFor<Entity>(Entity entity)
+			=> _state.GetOrAdd(entity);
 	}
 }

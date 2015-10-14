@@ -27,6 +27,14 @@ namespace Components
 
 			public bool TryAdd<Component>(Component component)
 				=> _componentState.TryAdd(typeof(Component), component);
+
+			public Component Get<Component>()
+			{
+				object componentObject = null;
+				if (_componentState.TryGetValue(typeof(Component), out componentObject))
+					return (Component)componentObject;
+				return default(Component);
+			}
 		}
 	}
 }
