@@ -25,7 +25,7 @@ namespace Components
 				_entity = entity;
 			}
 
-			public bool TryAdd<Component>(Component component)
+			public bool Add<Component>(Component component)
 				=> _componentState.TryAdd(typeof(Component), component);
 
 			public Component Get<Component>()

@@ -2,8 +2,7 @@
 {
 	public interface ComponentSystem
 	{
-		void Assign<Entity, Component>(Entity entity, Component component);
-		bool TryAssign<Entity, Component>(Entity entity, Component component);
-		EntityState StateFor<Entity>(Entity entity);
+		bool Assign<Entity, Component>(Entity entity, Component component);
+		EntityState Get<Entity>(Entity entity);
 	}
 }

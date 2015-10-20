@@ -12,7 +12,7 @@ namespace Component.Tests
 		public static void WhenServiceAddedThenCanResolveComponentSystem()
 		{
 			new ServiceCollection()
-				.UseComponentSystem()
+				.AddComponentSystem()
 				.BuildServiceProvider()
 				.GetService<ComponentSystem>()
 				.Should().NotBeNull();
@@ -20,7 +20,7 @@ namespace Component.Tests
 
 		private static IServiceProvider CreateProvider()
 			=> new ServiceCollection()
-				.UseComponentSystem()
+				.AddComponentSystem()
 				.BuildServiceProvider();
 
 		private static ComponentSystem CreateTarget(IServiceProvider provider = null)
@@ -28,47 +28,23 @@ namespace Component.Tests
 				.GetRequiredService<ComponentSystem>();
 
 		[Fact]
-		public static void WhenAssigningComponentToNullEntityThenThrowsException()
-		{
-			Action act = () => CreateTarget().Assign((object) null, new object());
-			act.ShouldThrow<ArgumentNullException>();
-		}
-
-		[Fact]
-		public static void WhenAssigningNullComponentToEntityThenThrowsException()
-		{
-			Action act = () => CreateTarget().Assign(new object(), (object)null);
-			act.ShouldThrow<ArgumentNullException>();
-		}
-
-		[Fact]
-		public static void WhenSameComponentTypeAssignedToSameEntityInstanceThenThrowsException()
-		{
-			var entity = new object();
-			var provider = CreateProvider();
-			Action act = () => CreateTarget(provider).Assign(entity, new object());
-			act.ShouldNotThrow<Exception>();
-			act.ShouldThrow<ComponentAlreadyAssignedException>();
-		}
-
-		[Fact]
 		public static void WhenTryingToAssignComponentToNullEntityThenReturnsFalse()
 		{
-			CreateTarget().TryAssign((object)null, new object())
+			CreateTarget().Assign((object)null, new object())
 				.Should().BeFalse();
 		}
 
 		[Fact]
 		public static void WhenTryingToAssignNullComponentToEntityThenReturnsFalse()
 		{
-			CreateTarget().TryAssign(new object(), (object)null)
+			CreateTarget().Assign(new object(), (object)null)
 				.Should().BeFalse();
 		}
 
 		[Fact]
 		public static void WhenTryingToAssignComponentToEntityThenReturnsTrue()
 		{
-			CreateTarget().TryAssign(new object(), new object())
+			CreateTarget().Assign(new object(), new object())
 				.Should().BeTrue();
 		}
 
@@ -77,9 +53,9 @@ namespace Component.Tests
 		{
 			var entity = new object();
 			var provider = CreateProvider();
-			CreateTarget(provider).TryAssign(entity, new object())
+			CreateTarget(provider).Assign(entity, new object())
 				.Should().BeTrue();
-			CreateTarget(provider).TryAssign(entity, new object())
+			CreateTarget(provider).Assign(entity, new object())
 				.Should().BeFalse();
 		}
 
@@ -88,30 +64,30 @@ namespace Component.Tests
 		{
 			var provider = CreateProvider();
 			var component = new object();
-			CreateTarget(provider).TryAssign(new object(), component)
+			CreateTarget(provider).Assign(new object(), component)
 				.Should().BeTrue();
-			CreateTarget(provider).TryAssign(new object(), component)
+			CreateTarget(provider).Assign(new object(), component)
 				.Should().BeTrue();
 		}
 
 		[Fact]
 		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotThrowException()
 		{
-			Action act = () => CreateTarget().StateFor(new object());
+			Action act = () => CreateTarget().Get(new object());
 			act.ShouldNotThrow();
 		}
 
 		[Fact]
 		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotReturnNull()
 		{
-			CreateTarget().StateFor(new object())
+			CreateTarget().Get(new object())
 				.Should().NotBeNull();
 		}
 
 		[Fact]
 		public static void WhenRetrievingComponentNeverAssignedToEntityThenDoesNotThrowException()
 		{
-			Action act = () => CreateTarget().StateFor(new object()).Get<object>();
+			Action act = () => CreateTarget().Get(new object()).Get<object>();
 			act.ShouldNotThrow();
 		}
 
@@ -123,7 +99,7 @@ namespace Component.Tests
 			var target = CreateTarget();
 			target.Assign(entity, component);
 
-			target.StateFor(entity).Get<object>()
+			target.Get(entity).Get<object>()
 				.Should().Be(component);
 		}
 
@@ -133,7 +109,7 @@ namespace Component.Tests
 			var target = CreateTarget();
 			target.Assign(new object(), new object());
 
-			target.StateFor(new object()).Get<object>()
+			target.Get(new object()).Get<object>()
 				.Should().Be(default(object));
 		}
 	}

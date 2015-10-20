@@ -1,21 +1,15 @@
 ﻿using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.Extensions;
-using System.Collections.Generic;
 
 namespace Components
 {
 	public static class ServiceExtensions
 	{
-		public static IServiceCollection UseComponentSystem(this IServiceCollection services)
+		public static IServiceCollection AddComponentSystem(this IServiceCollection services)
 		{
-			services.TryAdd(DefaultServices());
+			services.TryAddTransient<StateManager, ConcurrentDictionaryStateManager>();
+			services.TryAddTransient<ComponentSystem, StateManagedComponentSystem>();
 			return services;
-		}
-
-		public static IEnumerable<ServiceDescriptor> DefaultServices()
-		{
-			yield return ServiceDescriptor.Singleton<StateManager, ConcurrentDictionaryStateManager>();
-			yield return ServiceDescriptor.Transient<ComponentSystem, StateManagedComponentSystem>();
 		}
 	}
 }
