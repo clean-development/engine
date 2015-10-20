@@ -21,6 +21,6 @@ namespace Components
 		}
 
 		public EntityState Get<Entity>(Entity entity)
-			=> _state.GetOrAdd(entity);
+			=> _state.Get(entity);
 	}
 }

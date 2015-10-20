@@ -7,7 +7,7 @@ namespace Components
 	{
 		public static IServiceCollection AddComponentSystem(this IServiceCollection services)
 		{
-			services.TryAddTransient<StateManager, ConcurrentDictionaryStateManager>();
+			services.TryAddSingleton<StateManager, ConcurrentDictionaryStateManager>();
 			services.TryAddTransient<ComponentSystem, StateManagedComponentSystem>();
 			return services;
 		}

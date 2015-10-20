@@ -11,6 +11,14 @@ namespace Components
 		public EntityState GetOrAdd<Entity>(Entity entity)
 			=> _entityState.GetOrAdd(entity, Create);
 
+		public EntityState Get<Entity>(Entity entity)
+		{
+			EntityState entityState;
+			if (!_entityState.TryGetValue(entity, out entityState))
+				return null;
+			return entityState;
+		}
+
 		private EntityState Create(object entity)
 			=> new ConcurrentDictionaryEntityState(entity);
 

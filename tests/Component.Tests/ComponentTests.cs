@@ -78,17 +78,10 @@ namespace Component.Tests
 		}
 
 		[Fact]
-		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotReturnNull()
+		public static void WhenRetrievingEntityStateForEntityNeverAssignedToThenReturnsNull()
 		{
 			CreateTarget().Get(new object())
-				.Should().NotBeNull();
-		}
-
-		[Fact]
-		public static void WhenRetrievingComponentNeverAssignedToEntityThenDoesNotThrowException()
-		{
-			Action act = () => CreateTarget().Get(new object()).Get<object>();
-			act.ShouldNotThrow();
+				.Should().BeNull();
 		}
 
 		[Fact]
@@ -109,7 +102,7 @@ namespace Component.Tests
 			var target = CreateTarget();
 			target.Assign(new object(), new object());
 
-			target.Get(new object()).Get<object>()
+			target.Get(new object())?.Get<object>()
 				.Should().Be(default(object));
 		}
 	}
