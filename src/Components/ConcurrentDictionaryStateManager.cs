@@ -43,6 +43,12 @@ namespace Components
 					return (Component)componentObject;
 				return default(Component);
 			}
+
+			public bool Remove<Component>(Component component)
+			{
+				object _;
+				return _componentState.TryRemove(typeof(Component), out _);
+			}
 		}
 	}
 }

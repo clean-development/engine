@@ -53,6 +53,7 @@ namespace Component.Tests
 		{
 			var entity = new object();
 			var provider = CreateProvider();
+
 			CreateTarget(provider).Assign(entity, new object())
 				.Should().BeTrue();
 			CreateTarget(provider).Assign(entity, new object())
@@ -104,6 +105,44 @@ namespace Component.Tests
 
 			target.Get(new object())?.Get<object>()
 				.Should().Be(default(object));
+		}
+
+		[Fact]
+		public static void WhenUnassigningComponentFromNullEntityThenReturnsFalse()
+		{
+			CreateTarget().Unassign((object)null, new object())
+				.Should().BeFalse();
+		}
+
+		[Fact]
+		public static void WhenUnassigningComponentNeverAssignedToEntityThenReturnsFalse()
+		{
+			CreateTarget().Unassign(new object(), new object())
+				.Should().BeFalse();
+		}
+
+		[Fact]
+		public static void WhenUnassigningComponentOfSameTypeAsAssignedComponentThenReturnsTrue()
+		{
+			var entity = new object();
+			var provider = CreateProvider();
+			CreateTarget(provider).Assign(entity, new object());
+
+			CreateTarget(provider).Unassign(entity, new object())
+				.Should().BeTrue();
+		}
+
+		[Fact]
+		public static void WhenUnassigningUnassignedComponentThenReturnsFalse()
+		{
+			var entity = new object();
+			var provider = CreateProvider();
+			CreateTarget(provider).Assign(entity, new object());
+
+			CreateTarget(provider).Unassign(entity, new object())
+				.Should().BeTrue();
+			CreateTarget(provider).Unassign(entity, new object())
+				.Should().BeFalse();
 		}
 	}
 }

@@ -22,5 +22,12 @@ namespace Components
 
 		public EntityState Get<Entity>(Entity entity)
 			=> _state.Get(entity);
+
+		public bool Unassign<Entity, Component>(Entity entity, Component component)
+		{
+			if (entity == null || component == null) return false;
+
+			return _state.Get(entity)?.Remove(component) ?? false;
+		}
 	}
 }
