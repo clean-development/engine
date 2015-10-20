@@ -28,28 +28,28 @@ namespace Component.Tests
 				.GetRequiredService<ComponentSystem>();
 
 		[Fact]
-		public static void WhenTryingToAssignComponentToNullEntityThenReturnsFalse()
+		public static void WhenAssigningComponentToNullEntityThenReturnsFalse()
 		{
 			CreateTarget().Assign((object)null, new object())
 				.Should().BeFalse();
 		}
 
 		[Fact]
-		public static void WhenTryingToAssignNullComponentToEntityThenReturnsFalse()
+		public static void WhenAssigningNullComponentToEntityThenReturnsFalse()
 		{
 			CreateTarget().Assign(new object(), (object)null)
 				.Should().BeFalse();
 		}
 
 		[Fact]
-		public static void WhenTryingToAssignComponentToEntityThenReturnsTrue()
+		public static void WhenAssigningComponentToEntityThenReturnsTrue()
 		{
 			CreateTarget().Assign(new object(), new object())
 				.Should().BeTrue();
 		}
 
 		[Fact]
-		public static void WhenTryingToAssignSameComponentTypeToSameEntityInstanceThenReturnsFalse()
+		public static void WhenAssigningSameComponentTypeToSameEntityInstanceThenReturnsFalse()
 		{
 			var entity = new object();
 			var provider = CreateProvider();
@@ -60,7 +60,7 @@ namespace Component.Tests
 		}
 
 		[Fact]
-		public static void WhenTryingToAssignSameComponentsToDifferentEntityInstancesThenReturnsTrue()
+		public static void WhenAssigningSameComponentsToDifferentEntityInstancesThenReturnsTrue()
 		{
 			var provider = CreateProvider();
 			var component = new object();
