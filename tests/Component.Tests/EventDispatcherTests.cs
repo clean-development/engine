@@ -30,11 +30,10 @@ namespace Component.Tests
             var serviceProvider = CreateProvider();
             var stream = CreateEventStream(serviceProvider);
             var producer = CreateDispatcher(serviceProvider);
-
             var subscriber = new TestSubscriber<TestEvent>();
-
             var testEvent = new TestEvent();
             TestEvent receivedEvent;
+
             using (stream.Subscribe(subscriber))
             {
                 producer.Dispatch(testEvent);

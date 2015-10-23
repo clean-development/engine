@@ -37,10 +37,10 @@ namespace Component.Tests
         {
             var stream = CreateEventStream();
 
-            var subscription = stream.Subscribe(new TestSubscriber<TestEvent>());
-
-            subscription.Should().NotBeNull();
-            subscription.Dispose();
+            using (var subscription = stream.Subscribe(new TestSubscriber<TestEvent>()))
+            {
+                subscription.Should().NotBeNull();
+            }
         }
 
         [Fact]
@@ -48,10 +48,10 @@ namespace Component.Tests
         {
             var stream = CreateEventStream();
 
-            var subscription = stream.Subscribe((TestEvent e) => { });
-
-            subscription.Should().NotBeNull();
-            subscription.Dispose();
+            using (var subscription = stream.Subscribe((TestEvent e) => { }))
+            {
+                subscription.Should().NotBeNull();
+            }
         }
     }
 }
