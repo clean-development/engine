@@ -23,7 +23,7 @@ namespace Components
             if (callback == null)
                 throw new ArgumentNullException(nameof(callback));
 
-            return Subscribe(new SimpleSubscriber<T>(callback));
+            return Subscribe(new CallbackBasedObserver<T>(callback));
         }
 
         public IDisposable Subscribe<T>(IObserver<T> subscriber)
@@ -43,11 +43,11 @@ namespace Components
                 _subscriptions.Remove(subscriber);
         }
 
-        private class SimpleSubscriber<T> : IObserver<T>
+        private class CallbackBasedObserver<T> : IObserver<T>
         {
             private readonly Action<T> _callback;
 
-            internal SimpleSubscriber(Action<T> callback)
+            internal CallbackBasedObserver(Action<T> callback)
             {
                 _callback = callback;
             }
@@ -57,29 +57,18 @@ namespace Components
             public void OnError(Exception error)
             {
             }
-            public void OnNext(T value)
-            {
-                if (value != null)
-                    _callback(value);
-            }
+            public void OnNext(T value) => _callback(value);
         }
-        private struct Subscription : IDisposable
+        private class Subscription : IDisposable
         {
-            private Action _endOfSubscriptionAction;
+            private Action _unsubscribe;
 
-            internal Subscription(Action endOfSubscriptionAction)
+            internal Subscription(Action unsubscribe)
             {
-                _endOfSubscriptionAction = endOfSubscriptionAction;
+                _unsubscribe = unsubscribe;
             }
 
-            public void Dispose()
-            {
-                if (_endOfSubscriptionAction != null)
-                {
-                    _endOfSubscriptionAction();
-                    _endOfSubscriptionAction = null;
-                }
-            }
+            public void Dispose() => _unsubscribe?.Invoke();
         }
     }
 }
