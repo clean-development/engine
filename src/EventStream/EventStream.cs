@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components
+namespace EventStream
 {
     public interface EventStream
     {

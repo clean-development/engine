@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Component.Tests.Fakes
+namespace EventStream.Tests.Fakes
 {
     public class TestEvent
     {

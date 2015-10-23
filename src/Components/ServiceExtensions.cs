@@ -11,15 +11,5 @@ namespace Components
 			services.TryAddTransient<ComponentSystem, StateManagedComponentSystem>();
 			return services;
 		}
-
-        public static IServiceCollection AddInMemoryEventStream(this IServiceCollection services)
-        {
-            var inMemoryInstance = new InMemoryEventStream();
-
-            services.TryAdd(ServiceDescriptor.Instance(typeof(EventStream), inMemoryInstance));
-            services.TryAdd(ServiceDescriptor.Instance(typeof(EventDispatcher), inMemoryInstance));
-
-            return services;
-        }
 	}
 }

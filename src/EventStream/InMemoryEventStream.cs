@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Components
+namespace EventStream
 {
     internal sealed class InMemoryEventStream : EventStream, EventDispatcher
     {

@@ -1,18 +1,20 @@
-﻿using Component.Tests.Fakes;
-using Components;
+﻿using EventStream.Tests.Fakes;
 using FluentAssertions;
 using Microsoft.Framework.DependencyInjection;
 using System;
 using System.Linq;
 using Xunit;
 
-namespace Component.Tests
+namespace EventStream.Tests
 {
     public class EventDispatcherTests
     {
-        static IServiceProvider CreateProvider() => new ServiceCollection().AddInMemoryEventStream().BuildServiceProvider();
-        static EventStream CreateEventStream(IServiceProvider serviceProvider = null) => (serviceProvider ?? CreateProvider()).GetRequiredService<EventStream>();
-        static EventDispatcher CreateDispatcher(IServiceProvider serviceProvider = null) => (serviceProvider ?? CreateProvider()).GetRequiredService<EventDispatcher>();
+        static IServiceProvider CreateProvider() 
+                                    => new ServiceCollection().AddInMemoryEventStream().BuildServiceProvider();
+        static EventStream CreateEventStream(IServiceProvider serviceProvider = null) 
+                                    => (serviceProvider ?? CreateProvider()).GetRequiredService<EventStream>();
+        static EventDispatcher CreateDispatcher(IServiceProvider serviceProvider = null) 
+                                    => (serviceProvider ?? CreateProvider()).GetRequiredService<EventDispatcher>();
 
         [Fact]
         public static void GivenANullEntityThrowArgumentNullException()
@@ -35,9 +37,7 @@ namespace Component.Tests
             TestEvent receivedEvent;
 
             using (stream.Subscribe(subscriber))
-            {
                 producer.Dispatch(testEvent);
-            }
 
             receivedEvent = subscriber.ReceivedEvents.FirstOrDefault();
             receivedEvent.Should().BeSameAs(testEvent);
