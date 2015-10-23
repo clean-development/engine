@@ -17,6 +17,7 @@ namespace Components
                 foreach (var subscription in _subscriptions.OfType<IObserver<T>>())
                     subscription.OnNext(entity);
         }
+
         public IDisposable Subscribe<T>(Action<T> callback)
         {
             if (callback == null)
@@ -24,6 +25,7 @@ namespace Components
 
             return Subscribe(new SimpleSubscriber<T>(callback));
         }
+
         public IDisposable Subscribe<T>(IObserver<T> subscriber)
         {
             if (subscriber == null)
