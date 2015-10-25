@@ -2,13 +2,13 @@
 using FluentAssertions;
 using Microsoft.Framework.DependencyInjection;
 using System;
-using Xunit;
+using TestAttributes;
 
 namespace Component.Tests
 {
 	public class ComponentTests
 	{
-		[Fact]
+		[Unit]
 		public static void WhenServiceAddedThenCanResolveComponentSystem()
 		{
 			new ServiceCollection()
@@ -27,28 +27,28 @@ namespace Component.Tests
 			=> (provider ?? CreateProvider())
 				.GetRequiredService<ComponentSystem>();
 
-		[Fact]
+		[Unit]
 		public static void WhenAssigningComponentToNullEntityThenReturnsFalse()
 		{
 			CreateTarget().Assign((object)null, new object())
 				.Should().BeFalse();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenAssigningNullComponentToEntityThenReturnsFalse()
 		{
 			CreateTarget().Assign(new object(), (object)null)
 				.Should().BeFalse();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenAssigningComponentToEntityThenReturnsTrue()
 		{
 			CreateTarget().Assign(new object(), new object())
 				.Should().BeTrue();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenAssigningSameComponentTypeToSameEntityInstanceThenReturnsFalse()
 		{
 			var entity = new object();
@@ -60,7 +60,7 @@ namespace Component.Tests
 				.Should().BeFalse();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenAssigningSameComponentsToDifferentEntityInstancesThenReturnsTrue()
 		{
 			var provider = CreateProvider();
@@ -71,21 +71,21 @@ namespace Component.Tests
 				.Should().BeTrue();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenRetrievingStateForEntityNeverAssignedToThenDoesNotThrowException()
 		{
 			Action act = () => CreateTarget().Get(new object());
 			act.ShouldNotThrow();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenRetrievingEntityStateForEntityNeverAssignedToThenReturnsNull()
 		{
 			CreateTarget().Get(new object())
 				.Should().BeNull();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenRetrievingComponentAssignedToSameEntityInstanceThenReturnsComponent()
 		{
 			var entity = new object();
@@ -97,7 +97,7 @@ namespace Component.Tests
 				.Should().Be(component);
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenRetrievingComponentAssignedToDifferentEntityInstanceThenReturnsDefaultComponent()
 		{
 			var target = CreateTarget();
@@ -107,21 +107,21 @@ namespace Component.Tests
 				.Should().Be(default(object));
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenUnassigningComponentFromNullEntityThenReturnsFalse()
 		{
 			CreateTarget().Unassign((object)null, new object())
 				.Should().BeFalse();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenUnassigningComponentNeverAssignedToEntityThenReturnsFalse()
 		{
 			CreateTarget().Unassign(new object(), new object())
 				.Should().BeFalse();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenUnassigningComponentOfSameTypeAsAssignedComponentThenReturnsTrue()
 		{
 			var entity = new object();
@@ -132,7 +132,7 @@ namespace Component.Tests
 				.Should().BeTrue();
 		}
 
-		[Fact]
+		[Unit]
 		public static void WhenUnassigningUnassignedComponentThenReturnsFalse()
 		{
 			var entity = new object();
