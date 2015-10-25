@@ -2,6 +2,10 @@
 
 [![Stories in Backlog](https://badge.waffle.io/clean-development/engine.png?label=backlog&title=Backlog)](http://waffle.io/clean-development/engine) [![Stories in Ready](https://badge.waffle.io/clean-development/engine.png?label=ready&title=Ready)](http://waffle.io/clean-development/engine) [![Stories in Progress](https://badge.waffle.io/clean-development/engine.png?label=in%20progress&title=In%20Progress)](http://waffle.io/clean-development/engine)
 
+master | dev
+-------|----
+[![Build status](https://ci.appveyor.com/api/projects/status/s2v6xb479vt3mbr4/branch/dev?svg=true)](https://ci.appveyor.com/project/Smudge202/engine/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/s2v6xb479vt3mbr4/branch/dev?svg=true)](https://ci.appveyor.com/project/Smudge202/engine/branch/dev)
+
 ## Description
 
 _Clean Engine_ is the work of several friends with an interest in clean coding, self-development, and teaching. Our emphasis is not to publish the next great game engine, though that would be a welcome bonus, but instead to have fun working with best practices and years of commercial experience to create a software package that can be utilised by game developers.
