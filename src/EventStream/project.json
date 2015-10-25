@@ -1,0 +1,16 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "EventStream Class Library",
+  "authors": [ "Stuart Blackler" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+	"dependencies": {
+		"Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
+	},
+	"frameworks": {
+		"net46": { },
+		"netcore50": { }
+	}
+}
