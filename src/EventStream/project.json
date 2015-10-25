@@ -1,11 +1,17 @@
 ﻿{
-  "version": "1.0.0-*",
-  "description": "EventStream Class Library",
-  "authors": [ "Stuart Blackler" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-
+	"version": "1.0.0-*",
+	"description": "Event Stream for Clean Development Game Engine",
+	"authors": [ "Stuart Blackler", "Tommy Long", "Dan Kirkham", "Dan Cirket" ],
+	"tags": [ "event-stream", "clean-development", "game", "engine" ],
+	"projectUrl": "https://github.com/clean-development/engine",
+	"licenseUrl": "https://raw.githubusercontent.com/clean-development/engine/master/LICENSE",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/clean-development/engine"
+	},
+	"compilationOptions": {
+		"warningsAsErrors": true
+	},
 	"dependencies": {
 		"Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
 	},

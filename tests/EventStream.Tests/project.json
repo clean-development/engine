@@ -1,10 +1,12 @@
 ﻿{
 	"version": "1.0.0-*",
-	"description": "EventStream.Tests Class Library",
-	"authors": [ "Stuart Blackler" ],
-	"tags": [ "" ],
-	"projectUrl": "",
-	"licenseUrl": "",
+	"description": "Event Stream Tests",
+	"authors": [ "Stuart Blackler", "Tommy Long", "Dan Kirkham", "Dan Cirket" ],
+	"projectUrl": "https://github.com/clean-development/engine",
+	"licenseUrl": "https://raw.githubusercontent.com/clean-development/engine/master/LICENSE",
+	"compilationOptions": {
+		"warningsAsErrors": true
+	},
 	"dependencies": {
 		"EventStream": "1.0.0-*",
 		"FluentAssertions": "4.0.0",
