@@ -3,44 +3,44 @@ using FluentAssertions;
 using Microsoft.Framework.DependencyInjection;
 using System;
 using System.Linq;
-using Xunit;
+using TestAttributes;
 
 namespace EventStream.Tests
 {
-    public class EventDispatcherTests
-    {
-        static IServiceProvider CreateProvider() 
-                                    => new ServiceCollection().AddInMemoryEventStream().BuildServiceProvider();
-        static EventStream CreateEventStream(IServiceProvider serviceProvider = null) 
-                                    => (serviceProvider ?? CreateProvider()).GetRequiredService<EventStream>();
-        static EventDispatcher CreateDispatcher(IServiceProvider serviceProvider = null) 
-                                    => (serviceProvider ?? CreateProvider()).GetRequiredService<EventDispatcher>();
+	public class EventDispatcherTests
+	{
+		private static IServiceProvider CreateProvider() 
+			=> new ServiceCollection().AddInMemoryEventStream().BuildServiceProvider();
+		private static EventStream CreateEventStream(IServiceProvider serviceProvider = null) 
+			=> (serviceProvider ?? CreateProvider()).GetRequiredService<EventStream>();
+		private static EventDispatcher CreateDispatcher(IServiceProvider serviceProvider = null) 
+			=> (serviceProvider ?? CreateProvider()).GetRequiredService<EventDispatcher>();
 
-        [Fact]
-        public static void GivenANullEntityThrowArgumentNullException()
-        {
-            var producer = CreateDispatcher();
+		[Unit]
+		public static void GivenANullEntityThrowArgumentNullException()
+		{
+			var producer = CreateDispatcher();
 
-            Action act = () => producer.Dispatch<TestEvent>(null);
+			Action act = () => producer.Dispatch<TestEvent>(null);
 
-            act.ShouldThrow<ArgumentNullException>();
-        }
+			act.ShouldThrow<ArgumentNullException>();
+		}
 
-        [Fact]
-        public static void GivenAnEventIsDispatchedThenEventCanBeReceievedFromTheEventStream()
-        {
-            var serviceProvider = CreateProvider();
-            var stream = CreateEventStream(serviceProvider);
-            var producer = CreateDispatcher(serviceProvider);
-            var subscriber = new TestSubscriber<TestEvent>();
-            var testEvent = new TestEvent();
-            TestEvent receivedEvent;
+		[Unit]
+		public static void GivenAnEventIsDispatchedThenEventCanBeReceievedFromTheEventStream()
+		{
+			var serviceProvider = CreateProvider();
+			var stream = CreateEventStream(serviceProvider);
+			var producer = CreateDispatcher(serviceProvider);
+			var subscriber = new TestSubscriber<TestEvent>();
+			var testEvent = new TestEvent();
+			TestEvent receivedEvent;
 
-            using (stream.Subscribe(subscriber))
-                producer.Dispatch(testEvent);
+			using (stream.Subscribe(subscriber))
+				producer.Dispatch(testEvent);
 
-            receivedEvent = subscriber.ReceivedEvents.FirstOrDefault();
-            receivedEvent.Should().BeSameAs(testEvent);
-        }
-    }
+			receivedEvent = subscriber.ReceivedEvents.FirstOrDefault();
+			receivedEvent.Should().BeSameAs(testEvent);
+		}
+	}
 }

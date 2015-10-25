@@ -8,8 +8,8 @@ namespace EventStream
         public static IServiceCollection AddInMemoryEventStream(this IServiceCollection services)
         {
             services.TryAddSingleton<InMemoryEventStream, InMemoryEventStream>();
-            services.TryAddTransient(typeof(EventStream), isp => isp.GetRequiredService<InMemoryEventStream>());
-            services.TryAddTransient(typeof(EventDispatcher), isp => isp.GetRequiredService<InMemoryEventStream>());
+            services.TryAddTransient(typeof(EventStream), provider => provider.GetRequiredService<InMemoryEventStream>());
+            services.TryAddTransient(typeof(EventDispatcher), provider => provider.GetRequiredService<InMemoryEventStream>());
 
             return services;
         }
