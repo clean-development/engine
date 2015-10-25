@@ -23,4 +23,7 @@ build:
   publish_nuget_symbols: true
   verbosity: minimal
 test_script:
-- cmd: dnx -p tests\Component.Tests\ test
+- cmd: >-
+    dnx -p tests\Component.Tests\ test
+
+    dnx -p tests\EventStream.Tests\ test
