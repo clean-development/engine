@@ -1,10 +1,12 @@
 ﻿{
 	"version": "1.0.0-*",
-	"description": "Component.Tests Class Library",
-	"authors": [ "Tommy" ],
-	"tags": [ "" ],
-	"projectUrl": "",
-	"licenseUrl": "",
+	"description": "Component System Tests",
+	"authors": [ "Tommy Long", "Stuart Blackler", "Dan Kirkham", "Dan Cirket" ],
+	"projectUrl": "https://github.com/clean-development/engine",
+	"licenseUrl": "https://raw.githubusercontent.com/clean-development/engine/master/LICENSE",
+	"compilationOptions": {
+		"warningsAsErrors": true
+	},
 	"dependencies": {
 		"Components": "1.0.0-*",
 		"FluentAssertions": "4.0.0",

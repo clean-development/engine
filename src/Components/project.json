@@ -1,10 +1,17 @@
 ﻿{
 	"version": "1.0.0-*",
-	"description": "Components Class Library",
-	"authors": [ "Tommy Long" ],
-	"tags": [ "" ],
-	"projectUrl": "",
-	"licenseUrl": "",
+	"description": "Component System for Clean Development Game Engine",
+	"authors": [ "Tommy Long", "Stuart Blackler", "Dan Kirkham", "Dan Cirket" ],
+	"tags": [ "component-system", "clean-development", "game", "engine" ],
+	"projectUrl": "https://github.com/clean-development/engine",
+	"licenseUrl": "https://raw.githubusercontent.com/clean-development/engine/master/LICENSE",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/clean-development/engine"
+	},
+	"compilationOptions": {
+		"warningsAsErrors": true
+	},
 	"dependencies": {
 		"Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
 	},
