@@ -20,9 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{8715F244-D
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Component.Tests", "tests\Component.Tests\Component.Tests.xproj", "{69F5C049-59D2-448C-B009-8F1C48D537C5}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EntityComponentSystem.Tests", "tests\Component.Tests\EntityComponentSystem.Tests.xproj", "{69F5C049-59D2-448C-B009-8F1C48D537C5}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Components", "src\Components\Components.xproj", "{FDB68596-4408-419D-87A0-A6A170DC8144}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EntityComponentSystem", "src\Components\EntityComponentSystem.xproj", "{FDB68596-4408-419D-87A0-A6A170DC8144}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EventStream", "src\EventStream\EventStream.xproj", "{17D423BC-E072-420D-B7DA-58A921D37BE5}"
 EndProject

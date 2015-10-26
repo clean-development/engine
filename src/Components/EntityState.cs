@@ -1,4 +1,4 @@
-﻿namespace Components
+﻿namespace EntityComponentSystem
 {
 	public interface EntityState
 	{

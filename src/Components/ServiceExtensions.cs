@@ -1,7 +1,7 @@
 ﻿using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.Extensions;
 
-namespace Components
+namespace EntityComponentSystem
 {
 	public static class ServiceExtensions
 	{

@@ -1,4 +1,4 @@
-﻿using Components;
+﻿using EntityComponentSystem;
 using FluentAssertions;
 using Microsoft.Framework.DependencyInjection;
 using System;

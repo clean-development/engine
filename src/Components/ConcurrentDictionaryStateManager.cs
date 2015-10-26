@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Components
+namespace EntityComponentSystem
 {
 	internal sealed class ConcurrentDictionaryStateManager : StateManager
 	{
