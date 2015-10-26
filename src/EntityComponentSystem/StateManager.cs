@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components
+namespace EntityComponentSystem
 {
 	public interface StateManager
 	{

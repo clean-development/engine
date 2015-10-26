@@ -24,6 +24,6 @@ build:
   verbosity: minimal
 test_script:
 - cmd: >-
-    dnx -p tests\Component.Tests\ test
+    dnx -p tests\EntityComponentSystem.Tests\ test
 
     dnx -p tests\EventStream.Tests\ test

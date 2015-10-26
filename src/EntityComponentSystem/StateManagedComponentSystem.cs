@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components
+namespace EntityComponentSystem
 {
 	internal sealed class StateManagedComponentSystem : ComponentSystem
 	{
