@@ -1,4 +1,4 @@
-﻿{
+{
 	"version": "1.0.0-*",
 	"description": "Entity Component System Tests",
 	"authors": [ "Tommy Long", "Stuart Blackler", "Dan Kirkham", "Dan Cirket" ],
@@ -7,14 +7,14 @@
 	"compilationOptions": {
 		"warningsAsErrors": true
 	},
-	"dependencies": {
-		"Components": "1.0.0-*",
-		"FluentAssertions": "4.0.0",
-		"Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
-		"TestAttributes": "2.0.0-rc1",
-		"xunit": "2.1.0",
-		"xunit.runner.dnx": "2.1.0-beta6-build191"
-	},
+  "dependencies": {
+    "EntityComponentSystem": "1.0.0-*",
+    "FluentAssertions": "4.0.0",
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
+    "TestAttributes": "2.0.0-rc1",
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-beta6-build191"
+  },
 	"commands": {
 		"test": "xunit.runner.dnx"
 	},
