@@ -13,7 +13,7 @@ namespace EventStream.Tests
 		private static EventStream CreateEventStream(IServiceProvider serviceProvider = null) 
 			=> (serviceProvider ?? CreateProvider()).GetRequiredService<EventStream>();
 
-		[Unit]
+		[Component]
 		public static void GivenANullObserverBasedSubscriberThrowArgumentNullException()
 		{
 			var stream = CreateEventStream();
@@ -23,7 +23,7 @@ namespace EventStream.Tests
 			act.ShouldThrow<ArgumentNullException>();
 		}
 
-		[Unit]
+		[Component]
 		public static void GivenANullActionBasedSubscriberThrowArgumentNullException()
 		{
 			var stream = CreateEventStream();
@@ -33,7 +33,7 @@ namespace EventStream.Tests
 			act.ShouldThrow<ArgumentNullException>();
 		}
 
-		[Unit]
+		[Component]
 		public static void GivenAnObserverBasedSubscriberReturnsValidDisposable()
 		{
 			var stream = CreateEventStream();
@@ -42,7 +42,7 @@ namespace EventStream.Tests
 				subscription.Should().NotBeNull();
 		}
 
-		[Unit]
+		[Component]
 		public static void GivenAnActionBasedSubscriberReturnsValidDisposable()
 		{
 			var stream = CreateEventStream();

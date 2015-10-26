@@ -16,7 +16,7 @@ namespace EventStream.Tests
 		private static EventDispatcher CreateDispatcher(IServiceProvider serviceProvider = null) 
 			=> (serviceProvider ?? CreateProvider()).GetRequiredService<EventDispatcher>();
 
-		[Unit]
+		[Component]
 		public static void GivenANullEntityThrowArgumentNullException()
 		{
 			var producer = CreateDispatcher();
@@ -26,7 +26,7 @@ namespace EventStream.Tests
 			act.ShouldThrow<ArgumentNullException>();
 		}
 
-		[Unit]
+		[Component]
 		public static void GivenAnEventIsDispatchedThenEventCanBeReceievedFromTheEventStream()
 		{
 			var serviceProvider = CreateProvider();
