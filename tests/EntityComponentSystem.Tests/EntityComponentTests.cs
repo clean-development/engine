@@ -1,13 +1,12 @@
-﻿using EntityComponentSystem;
+﻿using System;
 using FluentAssertions;
 using Microsoft.Framework.DependencyInjection;
-using System;
 using TestAttributes;
 
-namespace Component.Tests
+namespace EntityComponentSystem.Tests
 {
-	public class ComponentTests
-	{
+    public class EntityComponentSystemTests
+    {
 		[Component]
 		public static void WhenServiceAddedThenCanResolveComponentSystem()
 		{
